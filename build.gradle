@@ -47,9 +47,26 @@ apply plugin: 'base'
 apply plugin: 'com.github.jk1.dependency-license-report'
 apply plugin: 'org.owasp.dependencycheck'
 
+
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled true
+        html.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+
 if (file('build-ext.gradle').exists()) {
   apply from: 'build-ext.gradle'
 }
+
 
 def script = this
 

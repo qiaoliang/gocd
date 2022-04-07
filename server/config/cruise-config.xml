@@ -1,50 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="139">
-  <server agentAutoRegisterKey="323040d4-f2e4-4b8a-8394-7a2d122054d1" webhookSecret="3d5cd2f5-7fe7-43c0-ba34-7e01678ba8b6" serverId="60f5f682-5248-4ba9-bb35-72c92841bd75" tokenGenerationKey="8c3c8dc9-08bf-4cd7-ac80-cecb3e7ae86c">
-    <security>
-      <authConfigs>
-        <authConfig id="9cad79b0-4d9e-4a62-829c-eb4d9488062f" pluginId="cd.go.authentication.passwordfile">
-          <property>
-            <key>PasswordFilePath</key>
-            <value>config/password.properties</value>
-          </property>
-        </authConfig>
-      </authConfigs>
-      <roles>
-        <role name="xyz" />
-      </roles>
-      <admins>
-        <user>jez</user>
-        <user>admin</user>
-      </admins>
-    </security>
-    <backup emailOnSuccess="true" emailOnFailure="true" />
+  <server agentAutoRegisterKey="530327d8-1e24-408f-add1-4c638bf95e52" webhookSecret="db52526b-976e-4ac1-a5e8-d0ff8690fa37" serverId="af198f39-b361-4ced-a8b5-7859f4f08ace" tokenGenerationKey="94be7c7c-abc6-4ff2-9ad8-20af7df60a98">
     <artifacts>
-      <artifactsDir>artifacts</artifactsDir>
+      <artifactsDir>logs</artifactsDir>
     </artifacts>
   </server>
-  <pipelines group="first">
-    <authorization>
-      <view>
-        <user>operate</user>
-      </view>
-      <admins>
-        <user>operate</user>
-      </admins>
-    </authorization>
-    <pipeline name="up42">
-      <materials>
-        <git url="test-repo" />
-      </materials>
-      <stage name="up42_stage">
-        <jobs>
-          <job name="up42_job">
-            <tasks>
-              <exec command="ls" />
-            </tasks>
-          </job>
-        </jobs>
-      </stage>
-    </pipeline>
-  </pipelines>
 </cruise>
