@@ -55,6 +55,10 @@ public class SvnCommandTest {
     private File checkoutFolder;
     private SvnCommand subversion;
     private ProcessOutputStreamConsumer outputStreamConsumer;
+    String expected_version_3_EN = "Checked out revision 3";
+    String expected_version_3_ZH = "取出版本 3";
+    String expected_version_4_EN = "Updated to revision 4";
+    String expected_version_4_ZH = "更新到版本 4";
     private final String svnInfoOutput = "<?xml version=\"1.0\"?>\n"
             + "<info>\n"
             + "<entry\n"
@@ -92,12 +96,18 @@ public class SvnCommandTest {
         assertThat(material.getUrl()).contains("%20");
         InMemoryStreamConsumer output = new InMemoryStreamConsumer();
         material.freshCheckout(output, new SubversionRevision("3"), working);
-        assertThat(output.getAllOutput()).contains("Checked out revision 3");
+
+
+        String allOutput = output.getAllOutput();
+        assertThat(allOutput.contains(expected_version_3_EN) ||
+                        allOutput.contains(expected_version_3_ZH)).isEqualTo(true);
 
         InMemoryStreamConsumer output2 = new InMemoryStreamConsumer();
         material.updateTo(output2, working, new RevisionContext(new SubversionRevision("4")), new TestSubprocessExecutionContext());
-        assertThat(output2.getAllOutput()).contains("Updated to revision 4");
-
+        String allOutput1 = output2.getAllOutput();
+        assertThat(allOutput1.contains(expected_version_4_EN)
+                ||allOutput1.contains(expected_version_4_ZH))
+                .isEqualTo(true);
     }
 
     @Test
@@ -108,11 +118,16 @@ public class SvnCommandTest {
         SvnMaterial material = repo.material();
         InMemoryStreamConsumer output = new InMemoryStreamConsumer();
         material.freshCheckout(output, new SubversionRevision("3"), working);
-        assertThat(output.getAllOutput()).contains("Checked out revision 3");
+        String allOutput = output.getAllOutput();
+        assertThat(allOutput.contains(expected_version_3_EN)||
+                allOutput.contains(expected_version_3_ZH))
+                .isEqualTo(true);
 
         InMemoryStreamConsumer output2 = new InMemoryStreamConsumer();
         updateMaterial(material, new SubversionRevision("4"), working, output2);
-        assertThat(output2.getAllOutput()).contains("Updated to revision 4");
+        String allOutput1 = output2.getAllOutput();
+        assertThat(allOutput1.contains(expected_version_4_EN)
+                ||allOutput1.contains(expected_version_4_ZH)).isEqualTo(true);
 
     }
 
@@ -129,11 +144,17 @@ public class SvnCommandTest {
         assertThat(material.getUrl()).contains("%20");
         InMemoryStreamConsumer output = new InMemoryStreamConsumer();
         material.freshCheckout(output, new SubversionRevision("3"), working);
-        assertThat(output.getAllOutput()).contains("Checked out revision 3");
+        String allOutput = output.getAllOutput();
+        assertThat(allOutput.contains(expected_version_3_EN) ||
+                allOutput.contains(expected_version_3_ZH)).isEqualTo(true);
 
         InMemoryStreamConsumer output2 = new InMemoryStreamConsumer();
         updateMaterial(material, new SubversionRevision("4"), working, output2);
-        assertThat(output2.getAllOutput()).contains("Updated to revision 4");
+
+
+        String allOutput2 = output2.getAllOutput();
+        assertThat(allOutput2.contains(expected_version_4_EN)
+                ||allOutput2.contains(expected_version_4_ZH)).isEqualTo(true);
 
     }
 

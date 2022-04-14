@@ -44,7 +44,7 @@ class BuilderTest {
 
         StubBuilder stubBuilder = new StubBuilder();
 
-        CommandBuilder cancelBuilder = new CommandBuilder("echo2", "cancel task", new File("."),
+        CommandBuilder cancelBuilder = new CommandBuilder("echo100", "cancel task", new File("."),
                 new RunIfConfigs(FAILED), stubBuilder,
                 "");
 
@@ -53,7 +53,8 @@ class BuilderTest {
                 "");
         builder.cancel(goPublisher, new EnvironmentVariableContext(), null, null, "utf-8");
 
-        assertThat(goPublisher.getMessage()).contains("Error happened while attempting to execute 'echo2 cancel task'");
+        String message = goPublisher.getMessage();
+        assertThat(message).contains("Error happened while attempting to execute 'echo100 cancel task'");
     }
 
     @Test

@@ -58,6 +58,7 @@ import static java.util.regex.Pattern.quote;
 import static org.apache.commons.io.filefilter.FileFilterUtils.*;
 import static org.apache.commons.lang3.time.DateUtils.addDays;
 import static org.apache.commons.lang3.time.DateUtils.setMilliseconds;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GitCommandTest {
@@ -377,9 +378,12 @@ public class GitCommandTest {
                     () -> gitWithSubmodule.resetWorkingDir(new SysOutStreamConsumer(), new StringRevision("HEAD"), false))
                     .getMessage();
 
-            final String expectedError = format("[Cc]lone of '%s' into submodule path '((.*)[\\/])?sub1' failed",
+            final String expectedError_en = format("[Cc]lone of '%s' into submodule path '((.*)[\\/])?sub1' failed",
                     quote(FileUtil.toFileURI(submoduleFolder.getAbsolutePath()) + "/"));
-            assertTrue(compile(expectedError).matcher(message).find());
+            final String expectedError_zh = "无法克隆";
+            System.out.println(message);
+            assertThat(compile(expectedError_en).matcher(message).find()||
+                    message.contains(expectedError_zh)).isEqualTo(true);
         }
 
         @Test
@@ -522,7 +526,9 @@ public class GitCommandTest {
             GitCommand command = new GitCommand(remoteRepo.createMaterial().getFingerprint(), gitLocalRepoDir, "non-existent-branch", false, null);
 
             final String message = assertThrows(CommandLineException.class, command::latestModification).getMessage();
-            assertTrue(message.contains("ambiguous argument 'origin/non-existent-branch': unknown revision or path not in the working tree."));
+            String expected_en = "ambiguous argument 'origin/non-existent-branch': unknown revision or path not in the working tree.";
+            String expected_zh ="有歧义的参数 'origin/non-existent-branch'：未知的版本或路径不存在于工作区中";
+            assertTrue(message.contains(expected_en)||message.contains(expected_zh));
         }
 
         @Test
@@ -685,9 +691,14 @@ public class GitCommandTest {
             FileUtils.deleteQuietly(repoLocation);
 
             final String message = assertThrows(Exception.class, git::latestModification).getMessage();
+            String NotReadFromRemote_EN = "Could not read from remote repository";
+            String hungUp = "The remote end hung up unexpectedly";
+            String NotReadFromRemote_ZH = "无法读取远程仓库。";
+
             assertTrue(
-                    message.contains("The remote end hung up unexpectedly") ||
-                            message.contains("Could not read from remote repository")
+                    message.contains(hungUp) ||
+                            message.contains(NotReadFromRemote_EN) ||
+                            message.contains(NotReadFromRemote_ZH )
             );
         }
 

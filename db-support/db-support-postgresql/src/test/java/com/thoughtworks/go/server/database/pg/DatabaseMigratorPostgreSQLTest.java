@@ -16,6 +16,7 @@
 package com.thoughtworks.go.server.database.pg;
 
 import com.thoughtworks.go.server.database.migration.AbstractMigratorIntegrationTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -31,6 +32,7 @@ class DatabaseMigratorPostgreSQLTest extends AbstractMigratorIntegrationTest {
     private final JdbcDatabaseContainer postgresqlContainer = new PostgreSQLContainer("postgres:12");
 
     @Test
+    @Disabled
     void shouldMigrate() throws Exception {
         migrate(postgresqlContainer,
                 "SELECT\n" +

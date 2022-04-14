@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="139">
-  <server agentAutoRegisterKey="530327d8-1e24-408f-add1-4c638bf95e52" webhookSecret="db52526b-976e-4ac1-a5e8-d0ff8690fa37" serverId="af198f39-b361-4ced-a8b5-7859f4f08ace" tokenGenerationKey="94be7c7c-abc6-4ff2-9ad8-20af7df60a98">
+  <server agentAutoRegisterKey="4dcd23ba-551d-4770-8940-1f96bcf88d90" webhookSecret="1f7b34a1-f487-4e5d-90ba-c7a73eed5de0" serverId="55382e65-a4dc-4a88-81a7-a5902739cf22" tokenGenerationKey="85fb56cf-c6a8-4404-a1b0-7eadf700f23a">
     <artifacts>
       <artifactsDir>logs</artifactsDir>
     </artifacts>

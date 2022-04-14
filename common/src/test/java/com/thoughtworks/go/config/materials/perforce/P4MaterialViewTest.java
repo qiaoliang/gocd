@@ -17,6 +17,7 @@ package com.thoughtworks.go.config.materials.perforce;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -24,17 +25,20 @@ import static org.hamcrest.Matchers.is;
 public class P4MaterialViewTest {
     private static final String CLIENT_NAME = "cruise-ccedev01-mingle";
 
-    @Test public void shouldReplaceClientNameOnView() throws Exception {
+    @Test
+    public void shouldReplaceClientNameOnView() throws Exception {
         P4MaterialView view = new P4MaterialView("//depot/... //something/...");
         assertThat(view.viewUsing(CLIENT_NAME), containsString("//depot/... //cruise-ccedev01-mingle/..."));
     }
 
-    @Test public void shouldNotrelyOnDepotInTheViews() throws Exception {
+    @Test
+    public void shouldNotrelyOnDepotInTheViews() throws Exception {
         P4MaterialView view = new P4MaterialView("//SZOPT/... //MDYNYCMDCDEV03/SZOPT/...");
         assertThat(view.viewUsing(CLIENT_NAME), containsString("//SZOPT/... //cruise-ccedev01-mingle/SZOPT/..."));
     }
 
-    @Test public void shouldSetCorrectTabs() throws Exception {
+    @Test
+    public void shouldSetCorrectTabs() throws Exception {
         String from = "\n"
                 + "    //depot/dir1/... //cws/...\n"
                 + "//depot/dir1/... //cws/...\n"
@@ -54,7 +58,8 @@ public class P4MaterialViewTest {
         assertMapsTo(from, to);
     }
 
-    @Test public void shouldSupportExcludedAndIncludeMappings() throws Exception {
+    @Test
+    public void shouldSupportExcludedAndIncludeMappings() throws Exception {
         String from = "//depot/dir1/... //cws/...\n"
                 + "-//depot/dir1/exclude/... //cws/dir1/exclude/...\n"
                 + "+//depot/dir1/include/... //cws/dir1/include/...";
@@ -65,7 +70,8 @@ public class P4MaterialViewTest {
         assertMapsTo(from, to);
     }
 
-    @Test public void shouldSupportMappingsWithSpecialCharacters() throws Exception {
+    @Test
+    public void shouldSupportMappingsWithSpecialCharacters() throws Exception {
         String from = "//depot/dir1/old.* //cws/renamed/new.*\n"
                 + "//depot/dir1/%1.%2 //cws/dir1/%2.%1\n"
                 + "\t//foobar/dir1/%1.%2 //cws/dir1/%2.%1\n"

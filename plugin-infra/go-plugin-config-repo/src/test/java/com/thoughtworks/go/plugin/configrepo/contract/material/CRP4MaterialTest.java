@@ -17,6 +17,7 @@ package com.thoughtworks.go.plugin.configrepo.contract.material;
 
 import com.google.gson.JsonObject;
 import com.thoughtworks.go.plugin.configrepo.contract.AbstractCRTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

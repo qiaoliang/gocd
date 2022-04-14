@@ -17,6 +17,7 @@
 package com.thoughtworks.go.server.database.mysql;
 
 import com.thoughtworks.go.server.database.migration.AbstractMigratorIntegrationTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -35,6 +36,7 @@ class DatabaseMigratorMySQLTest extends AbstractMigratorIntegrationTest {
             .withCommand("--lower-case-table-names=1");
 
     @Test
+    @Disabled
     void shouldMigrate() throws Exception {
         migrate(mySQLContainer, "show tables;", "root", "");
     }

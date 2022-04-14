@@ -26,6 +26,7 @@ import com.thoughtworks.go.util.ReflectionUtil;
 import com.thoughtworks.go.util.TempDirUtils;
 import com.thoughtworks.go.util.command.EnvironmentVariableContext;
 import com.thoughtworks.go.util.command.InMemoryStreamConsumer;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
