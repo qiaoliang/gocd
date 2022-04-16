@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.fail;
 
 class ScriptRunnerTest {
     @Test
-    @EnabledOnOs(OS.LINUX)
+    @DisabledOnOs(OS.WINDOWS)
     void shouldReplaceSecretsOnTheOutputUnderLinux() throws CheckedCommandLineException {
         CommandLine command = CommandLine.createCommandLine("echo").withArg("My password is ").withArg(
                 new PasswordArgument("secret")).withEncoding("utf-8");
@@ -77,7 +77,7 @@ class ScriptRunnerTest {
     }
 
     @Test
-    @DisabledOnOs(OS.WINDOWS)
+    @EnabledOnOs({OS.LINUX,OS.MAC})
     void shouldMaskOutOccuranceOfSecureEnvironmentVariablesValuesInTheScriptOutputOnLinux() throws CheckedCommandLineException {
         EnvironmentVariableContext environmentVariableContext = new EnvironmentVariableContext();
         environmentVariableContext.setProperty("secret", "the_secret_password", true);

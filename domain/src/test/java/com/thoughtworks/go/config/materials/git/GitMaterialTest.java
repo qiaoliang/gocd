@@ -292,7 +292,7 @@ public class GitMaterialTest {
 
         @Test
         @EnabledOnOs({OS.WINDOWS})
-        void shouldThrowExceptionWhenWorkingDirectoryIsNotGitRepoAndItsUnableToDeleteIt() throws IOException {
+        void shouldThrowExceptionWhenWorkingDirectoryIsNotGitRepoAndItsUnableToDeleteItUnderWindows() throws IOException {
             File fileToBeLocked = new File(workingDir, "file");
             try (RandomAccessFile lockedFile = new RandomAccessFile(fileToBeLocked, "rw");
                  FileLock ignored = lockedFile.getChannel().lock()) {

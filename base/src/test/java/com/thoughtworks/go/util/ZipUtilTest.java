@@ -135,7 +135,7 @@ public class ZipUtilTest {
     }
 
     @Test
-    @EnabledOnOs(OS.LINUX)
+    @EnabledOnOs({OS.LINUX,OS.MAC})
     void shouldZipFileWhoseNameHasSpecialCharactersOnLinux() throws IOException {
         File specialFile = new File(srcDir, "$`#?@!()?-_{}^'~.+=[];,a.txt");
         FileUtils.writeStringToFile(specialFile, "specialFile", UTF_8);

@@ -44,7 +44,6 @@ class P4MaterialConfigTest {
     }
 
     @Test
-    @Disabled
     void shouldSetConfigAttributes() {
         P4MaterialConfig p4MaterialConfig = p4("", "");
 
@@ -72,7 +71,6 @@ class P4MaterialConfigTest {
     }
 
     @Test
-    @Disabled
     void validate_shouldEnsureThatViewIsNotBlank() {
         assertError("example.com:1233", "", P4MaterialConfig.VIEW, "P4 view cannot be empty.");
     }
